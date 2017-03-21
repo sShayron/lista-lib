@@ -2,6 +2,24 @@
 #include "../includes/lista.h"
 #endif
 
+static TipoL
+infoLista( Lista lst ) {
+    if ( lst -> iterador != NULL )
+        return lst -> iterador -> info;
+}
+
+static int 
+longLista( Lista lst ) {
+    return lst -> longitude;
+}
+
+static int 
+fimLista( Lista lst ) {
+    if ( lst -> iterador == NULL ) 
+        return 1;
+    return 0;
+}
+
 static void 
 _limpaLista( Lista lst ) {
     lst -> longitude    = 0;
@@ -43,19 +61,18 @@ anexLista( Lista lst, TipoL elem ) {
     pListaNo novoNo = _inicNo( elem );
 
     if( lst -> longitude == 0  ) {
-        _insNoLista(lst, novoNo);
+        _insNoLista( lst, novoNo );
     } else {
         if ( lst -> iterador == lst -> ultimo ) {
             lst -> iterador -> prox = novoNo;
             lst -> iterador         = novoNo;
             lst -> ultimo           = novoNo;
-            lst -> longitude++;
         } else {
             novoNo -> prox          = lst -> iterador -> prox;
             lst -> iterador -> prox = novoNo;
             lst -> iterador         = novoNo;
-            lst -> longitude++;
         }
+        lst -> longitude++;
     }
 }
 
@@ -81,61 +98,55 @@ insLista( Lista lst, TipoL elem ) {
 
 static void 
 elimLista( Lista lst ) {
+    pListaNo aux;
+    
+    if (fimLista( lst )) {
+        return;
+    }
+    
+    if ( lst-> iterador = lst -> ultimo ){
+        lst -> iterador = NULL;
+    }
+    
     if (lst -> longitude == 1) {
         _limpaLista( lst );
     } else {
-        if (lst -> iterador == lst -> ultimo) {
-            lst -> ultimo   = lst -> iterador--; //MAYBE THIS DON'T EVEN WORK
-            lst -> iterador = lst -> ultimo;
+        if (lst -> longitude == 1) {
+            aux = lst -> primeiro -> prox; 
+            lst -> primeiro -> prox = NULL;
+            free( aux );
         } else {
-            lst -> iterador-- -> prox = lst -> iterador -> prox; //MAYBE THIS DON'T EVEN WORK
-            lst -> iterador           = lst -> iterador -> prox;
+            aux = lst -> iterador -> prox;
+            lst -> iterador -> prox = lst -> iterador -> prox -> prox;
+            free( aux );
         }
         lst -> longitude--;
     }
 }
 
 static void 
+segLista( Lista lst ) {
+    if ( lst -> iterador -> prox -> prox == NULL ) {
+        lst -> iterador = NULL;
+    } else {
+        lst -> iterador = lst -> iterador -> prox;
+    }
+}
+
+static void 
 primLista( Lista lst ) {
-    if( lst -> longitude > 0 ) 
-        lst -> iterador = lst -> primeiro;
+    lst -> iterador = lst -> primeiro;
 }
 
 static void
 ultLista( Lista lst ) {
-    if( lst -> longitude > 0 ) 
-        lst -> iterador = lst -> ultimo;
-}
-
-static void 
-segLista( Lista lst ) {
-    if ( lst -> iterador != NULL ) {
-        lst -> iterador++;                //MAYBE THIS DON'T EVEN WORK
-    }
+   for( primLista( lst ); lst-> iterador -> prox -> prox != NULL; seLista( lst ) );
 }
 
 static void
 posLista( Lista lst, int pos ) {
-    if ( 1 > pos > lst -> longitude  ) {
-        lst -> iterador = NULL;
-    } else {
-        lst -> iterador = lst -> primeiro + pos;
+    int i = 0;
+    for( primLista( lst ); i != (pos - 1); i++ ){
+        segLista( lst );
     }
-}
-
-static TipoL
-infoLista( Lista lst ) {
-    if ( lst -> iterador != NULL )
-        return lst -> iterador -> info;
-}
-
-static int 
-longLista( Lista lst ) {
-    return lst -> longitude;
-}
-
-static int fimLista( Lista lst ) {
-    if ( lst -> iterador == NULL ) 
-        return 1;
-    return 0;
 }

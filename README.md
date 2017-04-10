@@ -12,9 +12,9 @@ insLista( Lista lst, TipoL elem );          // Adiciona um elemento antes do ite
 elimLista( Lista lst );                     // Elimina o elemento que está sob o iterador
 primLista( Lista lst );                     // Coloca o iterador sobre o primeiro elemento da lista
 ultLista( Lista lst );                      // Coloca o iterador sobre o ultimo elemento da lista
-segLista( Lista lst );                 // Avança o iterador uma posição
-posLista( Lista lts, int pos );        // Coloca o iterador sobre a posição pos
-infoLista( Lista lst );               // Retorna o elemento sob o iterador
-longLista( Lista lst );                 // Retorna a quantidade de elementos da lista
-fimLista( Lista lst );                  // Retorna verdadeiro se o iterador estiver indefinido
+segLista( Lista lst );                      // Avança o iterador uma posição
+posLista( Lista lts, int pos );             // Coloca o iterador sobre a posição pos
+infoLista( Lista lst );                     // Retorna o elemento sob o iterador
+longLista( Lista lst );                     // Retorna a quantidade de elementos da lista
+fimLista( Lista lst );                      // Retorna verdadeiro se o iterador estiver indefinido
 ```

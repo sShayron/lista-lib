@@ -1,10 +1,11 @@
-#ifndef _LISTA_H
-#define _LISTA_H
+#ifndef _LISTA_DE_H
+#define _LISTA_DE_H
 
 typedef int TipoL;
 
 typedef struct ListaNo {
     TipoL  info;
+    struct ListaNo*ant;
     struct ListaNo*prox;
 } * pListaNo;
 

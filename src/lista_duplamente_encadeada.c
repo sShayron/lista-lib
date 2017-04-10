@@ -1,24 +1,7 @@
-#if !defined(_LISTA_H)
-#include "../includes/lista.h"
+#if !defined(_LISTA_DE_H)
+#include "../includes/lista_duplamente_encadeada.h"
 #endif
 
-static TipoL
-infoLista( Lista lst ) {
-    if ( lst -> iterador != NULL )
-        return lst -> iterador -> info;
-}
-
-static int 
-longLista( Lista lst ) {
-    return lst -> longitude;
-}
-
-static int 
-fimLista( Lista lst ) {
-    if ( lst -> iterador == NULL ) 
-        return 1;
-    return 0;
-}
 
 static void 
 _limpaLista( Lista lst ) {
@@ -31,11 +14,13 @@ _limpaLista( Lista lst ) {
 static pListaNo
 _inicNo( TipoL elem ) {
     pListaNo novoNo = ( pListaNo )malloc( sizeof( struct ListaNo ) ) ;
-    novoNo -> info = elem;
-    novoNo -> prox = NULL;
+    novoNo -> info  = elem;
+    novoNo -> prox  = NULL;
+    novoNo -> ant   = NULL;
     
     return novoNo;
 }
+
 
 static void
 _insNoLista (Lista lst, pListaNo novoNo) {
@@ -61,20 +46,25 @@ anexLista( Lista lst, TipoL elem ) {
     pListaNo novoNo = _inicNo( elem );
 
     if( lst -> longitude == 0  ) {
-        _insNoLista( lst, novoNo );
+        _insNoLista(lst, novoNo);
     } else {
         if ( lst -> iterador == lst -> ultimo ) {
+            novoNo -> ant           = lst -> iterador;
+            novoNo -> prox          = NULL;
             lst -> iterador -> prox = novoNo;
             lst -> iterador         = novoNo;
             lst -> ultimo           = novoNo;
+            lst -> longitude++;
         } else {
+            novoNo -> ant           = lst -> iterador;
             novoNo -> prox          = lst -> iterador -> prox;
             lst -> iterador -> prox = novoNo;
             lst -> iterador         = novoNo;
+            lst -> longitude++;
         }
-        lst -> longitude++;
     }
 }
+
 
 static void 
 insLista( Lista lst, TipoL elem ) {
@@ -85,6 +75,13 @@ insLista( Lista lst, TipoL elem ) {
     if( lst -> longitude == 0  ) {
         _insNoLista(lst, novoNo);
     } else {
+        if ( lst -> primeiro == lst -> iterador  ) {
+            novoNo -> prox          = lst -> iterador;
+            lst -> iterador -> ant  = novoNo;
+            lst -> iterador         = novoNo;
+        } else if ( lst -> ultimo == lst -> iterador ) {
+            
+        }
         aux                 = lst -> iterador;
         lst -> iterador     = novoNo;
         novoNo -> prox      = aux;
@@ -98,55 +95,6 @@ insLista( Lista lst, TipoL elem ) {
 
 static void 
 elimLista( Lista lst ) {
-    pListaNo aux;
     
-    if (fimLista( lst )) {
-        return;
-    }
-    
-    if ( lst-> iterador = lst -> ultimo ){
-        lst -> iterador = NULL;
-    }
-    
-    if (lst -> longitude == 1) {
-        _limpaLista( lst );
-    } else {
-        if (lst -> longitude == 1) {
-            aux = lst -> primeiro -> prox; 
-            lst -> primeiro -> prox = NULL;
-            free( aux );
-        } else {
-            aux = lst -> iterador -> prox;
-            lst -> iterador -> prox = lst -> iterador -> prox -> prox;
-            free( aux );
-        }
-        lst -> longitude--;
-    }
 }
 
-static void 
-segLista( Lista lst ) {
-    if ( lst -> iterador -> prox -> prox == NULL ) {
-        lst -> iterador = NULL;
-    } else {
-        lst -> iterador = lst -> iterador -> prox;
-    }
-}
-
-static void 
-primLista( Lista lst ) {
-    lst -> iterador = lst -> primeiro;
-}
-
-static void
-ultLista( Lista lst ) {
-   for( primLista( lst ); lst-> iterador -> prox -> prox != NULL; seLista( lst ) );
-}
-
-static void
-posLista( Lista lst, int pos ) {
-    int i = 0;
-    for( primLista( lst ); i != (pos - 1); i++ ){
-        segLista( lst );
-    }
-}

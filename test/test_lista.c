@@ -6,6 +6,7 @@ TEST inicia_lista_insere_no(void) {
     anexLista(lst, 666);
     printf("\n\nDeve criar uma lista inserir um nó com valor 666");
     ASSERT_EQm("Não está criando a lista ou retornando valor correto", 666, lst -> iterador -> info);
+    printf("\n\tValor do nó da lista: %i", infoLista(lst));
     PASS();
 }
 

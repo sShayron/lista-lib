@@ -207,8 +207,12 @@ ultLista( Lista lst ) {
 static void
 posLista( Lista lst, int pos ) {
     int i = 1;
-    for( primLista( lst ); i != pos; i++ ){
-        segLista( lst );
+    if (pos > lst -> longitude) {
+        printf("Lista só tem %i posições", lst->longitude);
+    } else {
+        for( primLista( lst ); i != pos; i++ ){
+            segLista( lst );
+        }
     }
 }
 

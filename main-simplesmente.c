@@ -81,6 +81,14 @@ int main() {
                 lst = listaExist(lst);
                 printf("Quantidade de elementos na lista: %i \n", longLista(lst));
                 break;
+            case 8:
+                system("clear");
+                int pos = 0;
+                lst = listaExist(lst);
+                printf("Escolha posicao que deseja colocar iterador: ");
+                scanf("%i", &pos);
+                posLista(lst, pos);
+                break;
             default:
              system("exit");
         }

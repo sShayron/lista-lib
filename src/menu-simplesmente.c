@@ -13,6 +13,7 @@ int escolha_menu()
     printf(" 5 - Exibir lista \n");
     printf(" 6 - Exibir elemento sob iterador \n");
     printf(" 7 - Exibir quantidade de elementos na lista \n");
+    printf(" 8 - Colocar iterador sob posicao escolhida \n");
     printf("--------------------------\n");
     printf(" 0 - Sair \n");
     printf("\n");

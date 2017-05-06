@@ -1,32 +1,55 @@
-#ifndef _LISTA_DE_H
-#define _LISTA_DE_H
+#ifndef LISTD_H
+#define LISTD_H
 
 typedef int TipoL;
 
-typedef struct ListaNo {
-    TipoL  info;
-    struct ListaNo*ant;
-    struct ListaNo*prox;
-} * pListaNo;
+/* Estrutura do No */
+typedef struct ListaNo
+{
+  struct ListaNo* ant; /* Ponteiro para o No anterior */
+  struct ListaNo* prox; /* Ponteiro para o proximo No */
+  TipoL info; /* Informação do nó */
+} No;
 
-typedef struct {
-    pListaNo primeiro, ultimo, iterador;
-    int longitude;
-} TLista, *Lista;
+/* Estrutura da Lista. */
+typedef struct tLista
+{
+  struct ListaNo* primeiro; /* Ponteiro apontando para o primeiro Nó da lista */
+  unsigned int tamanho; /* Tamanho da Lista */
+} Lista;
 
-static void _limpaLista( Lista lst );                   // Limpa atributos da lista
-static pListaNo _inicNo( TipoL elem );                  // Cria e retornar um novo nó com o elemento
-static void _insNoLista (Lista lst, pListaNo novoNo);   // Adiciona novo nó em uma lista vazia
-static Lista inicList( void );                          // Cria e retorna uma lista vazia
-static void anexLista( Lista lst, TipoL elem );         // Adiciona um elemento depois do iterador
-static void insLista( Lista lst, TipoL elem );          // Adiciona um elemento antes do iterador
-static void elimLista( Lista lst );                     // Elimina o elemento que está sob o iterador
-static void primLista( Lista lst );                     // Coloca o iterador sobre o primeiro elemento da lista
-static void ultLista( Lista lst );                      // Coloca o iterador sobre o ultimo elemento da lista
-static void segLista( Lista lst );                      // Avança o iterador uma posição
-static void posLista( Lista lts, int pos );             // Coloca o iterador sobre a posição pos
-static TipoL infoLista( Lista lst );                    // Retorna o elemento sob o iterador
-static int longLista( Lista lst );                      // Retorna a quantidade de elementos da lista
-static int fimLista( Lista lst );                       // Retorna verdadeiro se o iterador estiver indefinido
+/* Prototipos */
+Lista* inicLista(void);    // Cria e retorna uma Listaa vazia
+
+void exibirLista(Lista* lst); // Exibe a Lista
+
+/* Adicionando */
+void adicionaNoInicio(Lista* lst, TipoL info);               // Adiciona Elemento no inicio da Lista
+void adicionaNoFim(Lista* lst, TipoL info);                  // Adiciona Elemento no fim da Lista
+int adicionaNaPosicao(Lista* lst, TipoL info, int posicao); // Adiciona Elemento na posicao informada
+
+/* Removendo */
+int removeInicio(Lista* lst);                              // Remove Elemento no inicio da Lista
+int eliminaElemNaPosicao(Lista* lst, int posicao);         // Remove Elemento da posicao escolhida
+int removeFim(Lista* lst);                                 // Remove Elemento no Fim da Lista
+int removeElemEscolhido(Lista* lst, const TipoL info);     // Remove Elemento com info escolhida
+int destruirLista(Lista* lst);                             // Destroi a lista
+
+/* Retornando */
+int retornaPrimeiroElem(Lista* lst);                     // Retorna primeiro elemento da lista
+int retornaUltimoElem(Lista* lst);                       // Retorna ultimo elemento da lista
+int retornaElemNaPosicao(Lista* lst, int posicao);       // Retorna elemento na posicao escolhida
+int listaVazia(Lista* lst);                              // Retorna se a lista está vazia
+int tamanho(Lista* lst);                                 // Retorna o tamanho da lista
+
+/* Procurando */
+int procuraElem(Lista* lst, int procurado); // Procura elemento dentro da Lista
+
+/* Verifica */
+void esvaziaLista(Lista* lst); // Esvazia Lista
+
+/* Percorre */
+void percorre(Lista* lst); // Percorre os elementos da Lista
+
 
 #endif

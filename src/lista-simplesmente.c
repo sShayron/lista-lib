@@ -6,7 +6,7 @@
  * Função que retorna informação de onde esta o iterador
  * @param Lista
  */
-static TipoL
+ TipoL
 infoLista( Lista lst ) {
     if ( lst -> iterador != NULL )
         return lst -> iterador -> info;
@@ -16,7 +16,7 @@ infoLista( Lista lst ) {
  * Função que retornar tamanho atual da lista
  * @param Lista
  */
-static int 
+ int 
 longLista( Lista lst ) {
     return lst -> longitude;
 }
@@ -25,7 +25,7 @@ longLista( Lista lst ) {
  * Função que retorna quando lista está no fim
  * @param Lista
  */
-static int 
+ int 
 fimLista( Lista lst ) {
     if ( lst -> iterador == NULL ) 
         return 1;
@@ -36,7 +36,7 @@ fimLista( Lista lst ) {
  * Função auxiliar para limpar lista
  * @param Lista
  */
-static void 
+ void 
 _limpaLista( Lista lst ) {
     lst -> longitude    = 0;
     lst -> primeiro     = NULL;
@@ -48,7 +48,7 @@ _limpaLista( Lista lst ) {
  * Função auxiliar para iniciar nó com elemento
  * @param TipoL
  */
-static pListaNo
+ pListaNo
 _inicNo( TipoL elem ) {
     pListaNo novoNo = ( pListaNo )malloc( sizeof( struct ListaNo ) ) ;
     novoNo -> info = elem;
@@ -62,7 +62,7 @@ _inicNo( TipoL elem ) {
  * @param Lista
  * @param pListaNo
  */
-static void
+ void
 _insNoLista (Lista lst, pListaNo novoNo) {
     lst -> primeiro = novoNo;
     lst -> ultimo   = novoNo;
@@ -73,7 +73,7 @@ _insNoLista (Lista lst, pListaNo novoNo) {
 /**
  * Iniciar e reotrna uma Lista vazia
  */
-static Lista
+ Lista
 inicList() {
     Lista lst           = ( Lista )malloc( sizeof( TLista ) );
     lst -> longitude    = 0;
@@ -89,7 +89,7 @@ inicList() {
  * @param TipoL elem
  * @param Lista lst
  */
-static void
+ void
 anexLista( Lista lst, TipoL elem ) {
     pListaNo novoNo = _inicNo( elem );
 
@@ -114,7 +114,7 @@ anexLista( Lista lst, TipoL elem ) {
  * @param TipoL elem
  * @param Lista lst
  */
-static void 
+ void 
 insLista( Lista lst, TipoL elem ) {
     
     pListaNo novoNo = _inicNo( elem );
@@ -148,7 +148,7 @@ insLista( Lista lst, TipoL elem ) {
  * Função que remove todos elementos da lista
  * @param Lista
  */
-static void 
+ void 
 elimLista( Lista lst ) {
     pListaNo aux;
     
@@ -176,7 +176,7 @@ elimLista( Lista lst ) {
  * Função que avança o iterador em uma posição
  * @param Lista lst
  */
-static void 
+ void 
 segLista( Lista lst ) {
     lst -> iterador = lst -> iterador -> prox;
 }
@@ -185,7 +185,7 @@ segLista( Lista lst ) {
  * Função que coloca o iterador no primeiro da lista
  * @param Lista
  */
-static void 
+ void 
 primLista( Lista lst ) {
     lst -> iterador = lst -> primeiro;
 }
@@ -194,7 +194,7 @@ primLista( Lista lst ) {
  * Função que coloca o iterador no ultimo da lista
  * @param Lista
  */
-static void
+ void
 ultLista( Lista lst ) {
    lst -> iterador = lst -> ultimo;
 }
@@ -204,7 +204,7 @@ ultLista( Lista lst ) {
  * @param Lista
  * @param int
  */
-static void
+ void
 posLista( Lista lst, int pos ) {
     int i = 1;
     if (pos > lst -> longitude) {
@@ -220,7 +220,7 @@ posLista( Lista lst, int pos ) {
  * Função que imprime a lista
  * @param Lista
  */
-static void 
+ void 
 imprimeLista( Lista lst ) {
     int i = 1;
     pListaNo aux = _inicNo(0);
